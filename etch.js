@@ -25,12 +25,12 @@ size.addEventListener('change',()=>{
     createGrid(iterator,n);
 });
 
-//create grid
+//create grid based on the grid size
 //nxn matrix
 //borderWidth = (n-1)*2 + 2
 //width of one div = (480 - borderWidth)/n;
 function createGrid(iterator,n){
-    removeExistingGrid();
+    removeExistingGrid();   // remove existing grid before creating a new one
     for(let i=0;i<iterator;i++){ 
         let div = document.createElement('div');
         div.classList.add('grid');
@@ -40,10 +40,10 @@ function createGrid(iterator,n){
         div.style['height']=divWidth;
         container.appendChild(div);
     }
-    etcher();
+    etcher();  // call the etcher function to start etching 
 }
 
-function removeExistingGrid() {
+function removeExistingGrid() {  
     const grids = container.querySelectorAll('div');
     grids.forEach((grid)=>{
         container.removeChild(grid);
