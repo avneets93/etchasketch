@@ -34,8 +34,9 @@ function createGrid(iterator,n){
     for(let i=0;i<iterator;i++){ 
         let div = document.createElement('div');
         div.classList.add('grid');
-        let borderWidth = (n-1)*2 + 2;
-        let divWidth = (480 - borderWidth)/n + "px";
+        //let borderWidth = (n-1)*2 + 2;
+        //let divWidth = (480 - borderWidth)/n + "px";
+        let divWidth = (480)/n + "px";
         div.style['width']=divWidth;
         div.style['height']=divWidth;
         container.appendChild(div);
