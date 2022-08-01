@@ -1,6 +1,8 @@
 const container = document.querySelector('#container');
 const size = document.querySelector('select');
 const color = document.querySelector('input');
+const rgb = document.querySelector('#rgb');
+let rainbow = false;
 
 //find out grid size selected by user 
 let iterator = 256;
@@ -51,12 +53,26 @@ function removeExistingGrid() {
     });
 }
 
+rgb.addEventListener('click',()=> rainbow=true);
+color.addEventListener('click',()=> rainbow=false);
+
+function randomColor(){
+    const r = Math.round(Math.random()*256).toString(16);
+    const g = Math.round(Math.random()*256).toString(16);
+    const b = Math.round(Math.random()*256).toString(16);
+    let rgb = `#${r}${g}${b}`;
+    return rgb;
+}
+
 function etcher(){
     const divs = document.querySelectorAll('.grid');
     divs.forEach((div)=>{
         div.addEventListener('mouseenter',()=>{
             //div.classList.add('hover');
-            div.style['background-color']= color.value;
+            if (rainbow===true){
+                div.style['background-color']= randomColor();
+            }
+            else div.style['background-color']= color.value;
         });
     });
 }
@@ -66,13 +82,14 @@ clear.addEventListener('click',()=>{
     const divs = document.querySelectorAll('.grid');
     divs.forEach((div)=>{
             //div.classList.remove('hover');
-            div.style['background-color']='#ffe3b0';
+         div.style['background-color']='#ffe3b0';
     });
 });
 
 const erase = document.querySelector('#erase');
-erase.addEventListener('click',()=> color.value = '#ffe3b0');
+erase.addEventListener('click',()=> {
+    color.value = '#ffe3b0';
+    rainbow=false;
+});
 
 createGrid(256,16);   // initialize grid
-
-
